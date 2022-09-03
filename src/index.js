@@ -5,9 +5,17 @@ const path = require("path");
 const app = express();
 const port = 3002;
 
+const hbs = handlebars.create({});
+
 app.use(morgan("combined"));
 
-app.engine("hbs", handlebars.engine({ defaultLayout: "main.hbs" }));
+app.engine(
+  "hbs",
+  handlebars.engine({
+    extname: ".hbs",
+    defaultLayout: "main.hbs",
+  })
+);
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "resources/views"));
 
